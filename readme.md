@@ -1,6 +1,6 @@
-# Ohjelmisto 1 - Python harjoitukset
+## Ohjelmisto 1 - Python harjoitukset
 
-#Eetu Kumpukallio
+## Eetu Kumpukallio
 
-# Moduuli 1
-#kissa
+## Moduuli 1 ja 2
+# Tein tervehtimisohjelman ilman ongelmia. Sain toisen tehtävän mukaisesti githubin toimimaan, ja osaan käyttää tärkeimpiä toimintoja.
