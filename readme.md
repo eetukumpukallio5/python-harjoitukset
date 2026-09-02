@@ -11,5 +11,8 @@
 # Moduuli 4
 ## Kaikki tehtävät tehty.
 
-#Moduuli 5
+# Moduuli 5
 ## Tehtävät tehty ongelmitta. Projektia jatkettu.
+
+# Moduuli 6
+## Ei ongelmia toteutuksessa, kaikki tehty.
