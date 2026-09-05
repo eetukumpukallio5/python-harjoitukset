@@ -3,6 +3,10 @@
 
 # Muutoslogi
 
+# 5.9.2026
+# Hyödyntäen projekti 2:sen runkoa projekti 3 tehty. Päävalikko toimii funktioilla.
+# Projekti 3 kohdan tavoitteet saavutettu.
+
 # 2.9.2026 
 # Muokattu kansion rakennetta, uusin ja vanhemmat versiot näkyvät.
 
