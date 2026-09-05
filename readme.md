@@ -16,3 +16,6 @@
 
 # Moduuli 6
 ## Ei ongelmia toteutuksessa, kaikki tehty.
+
+# Moduuli 7
+## Tehty.
