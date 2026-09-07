@@ -19,3 +19,6 @@
 
 # Moduuli 7
 ## Tehty.
+
+# Moduuli 8
+## Listarakenteet olivat hyvin selkeitä. Kaikki tehtävät tehty.
