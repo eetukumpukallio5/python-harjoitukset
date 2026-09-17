@@ -60,3 +60,7 @@ while karkimatka < 10000:
     if tunti % 3 == 0:
         print(f"Tunteja on kulunut {tunti}! Kärjessä on auto {(pisin).rekisteritunnus}. Vielä {10000 - karkimatka} kilometria maaliin!")
         input("paina enter jatkaaksesi...")
+else:
+    lopputulos = []
+    for i in range(10):
+        
