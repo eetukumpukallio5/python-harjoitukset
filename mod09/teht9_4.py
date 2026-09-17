@@ -58,9 +58,21 @@ while karkimatka < 10000:
             pisin = autot[i]
     tunti += 1
     if tunti % 3 == 0:
-        print(f"Tunteja on kulunut {tunti}! Kärjessä on auto {(pisin).rekisteritunnus}. Vielä {10000 - karkimatka} kilometria maaliin!")
+        print(f"\nTunteja on kulunut {tunti}! Kärjessä on auto {(pisin).rekisteritunnus}. Vielä {10000 - karkimatka} kilometria maaliin!")
         input("paina enter jatkaaksesi...")
 else:
     lopputulos = []
     for i in range(10):
-        
+        karkimatka = 0
+        karkiauto = 0
+        for i in range(len(autot)):
+            if autot[i].kuljettu_matka > karkimatka:
+                karkimatka = autot[i].kuljettu_matka
+                karkiauto = i
+        lopputulos.append(autot[karkiauto])
+        del autot[karkiauto]
+
+print("\nMaaliviiva saavutettu! Tulokset ovat alla.")
+
+for i in range(10):
+    print(f"{i + 1}) {lopputulos[i].rekisteritunnus} Kuljettu matka: {lopputulos[i].kuljettu_matka} Huippunopeus: {lopputulos[i].huippunopeus} Nykyinen nopeus: {lopputulos[i].tamanhetkinen_nopeus}")

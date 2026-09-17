@@ -22,3 +22,6 @@
 
 # Moduuli 8
 ## Listarakenteet olivat hyvin selkeitä. Kaikki tehtävät tehty.
+
+# Moduuli 9
+## Kaikki tehtävät tehty.
