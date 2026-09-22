@@ -29,21 +29,30 @@ class Auto:
         self.kuljettu_matka += (aika * self.tamanhetkinen_nopeus)
 
 class Kilpailu:
-    tunti = 0
+    
 
     def __init__(self, nimi, km, autot):
         self.nimi = nimi
         self.km = km
         self.autot = autot
+        self.kisa_kaynnissa = True
+        self.tunti = 0
 
     def tunti_kuluu(self):
-        pass
+        for auto in range (len(self.autot)):
+            autot[auto].kiihdyta(random.randint(-10, 15))
+            autot[auto].kulje(1)
+            self.kilpailu_ohi(autot[auto].kuljettu_matka)
+        self.tunti += 1
+    
 
     def tulosta_tilanne(self):
-        pass
+        for i in range(10):
+            print(f"{i + 1}) {self.autot[i].rekisteritunnus} Kuljettu matka: {self.autot[i].kuljettu_matka} Huippunopeus: {self.autot[i].huippunopeus} Nykyinen nopeus: {self.autot[i].tamanhetkinen_nopeus}")
 
-    def kilpailu_ohi(self):
-        pass
+    def kilpailu_ohi(self, matka):
+        if matka >= self.km:
+            self.kisa_kaynnissa = False
 
 import random
 
@@ -55,3 +64,13 @@ for auto in range(10):
 
 kisa = Kilpailu("Suuri romuralli", 8000, autot)
 input(f"{kisa.nimi} alkakoon! {kisa.km} kilometriä maaliin, paras kuski voittakoon!\n(paina enter) ")
+
+while kisa.kisa_kaynnissa:
+    if kisa.tunti % 10 == 0:
+        print(f"{kisa.tunti} tuntia on kulunut! Tässä autojen tilanne.")
+        kisa.tulosta_tilanne()
+        input("(paina enter) ")
+    kisa.tunti_kuluu()
+
+print(f"Maaliviiva saavutettu! Kisaan meni vain {kisa.tunti} tuntia. Alla kuskit.")
+kisa.tulosta_tilanne()
