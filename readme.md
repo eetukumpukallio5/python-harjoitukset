@@ -28,3 +28,6 @@
 
 # Moduuli 10
 ## Tehtävät tehty, ei erityisempiä kommentteja niistä.
+
+# Moduuli 11
+## Tehtävät tehty.

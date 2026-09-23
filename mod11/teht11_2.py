@@ -25,9 +25,23 @@ class Auto:
         self.kuljettu_matka += (aika * self.tamanhetkinen_nopeus)
 
 class Sahkoauto(Auto):
-    def __init__(self):
-        pass
+    def __init__(self, rekisteritunnus, huippunopeus, akku_kapasiteetti):
+        super().__init__(rekisteritunnus, huippunopeus)
+        self.akku_kapasiteetti = akku_kapasiteetti
 
 class Polttomoottoriauto(Auto):
-    def __init__(self):
-        pass
+    def __init__(self, rekisteritunnus, huippunopeus, polttoaine_kapasiteetti):
+        super().__init__(rekisteritunnus, huippunopeus)
+        self.polttoaine_kapasiteetti = polttoaine_kapasiteetti
+
+sahko = Sahkoauto("ABC-15", 180, 52.5)
+poltto = Polttomoottoriauto("ACD-123", 165, 32.3)
+
+sahko.kiihdyta(int(input("Anna sähköautolle nopeus: ")))
+poltto.kiihdyta(int(input("Anna polttomoottoriautolle nopeus: ")))
+
+sahko.kulje(3)
+poltto.kulje(3)
+
+print(f"Auton {sahko.rekisteritunnus} kuljettu matka on {sahko.kuljettu_matka}")
+print(f"Auton {poltto.rekisteritunnus} kuljettu matka on {poltto.kuljettu_matka}")
