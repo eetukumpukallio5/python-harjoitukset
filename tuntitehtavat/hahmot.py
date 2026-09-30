@@ -12,42 +12,7 @@ Siirrä se sille luokalle, jossa se on sinusta looginen.
 Testaa, että peli toimii järkevästi.
 '''
 
-class Hahmo:
-    def __init__(self, nimi, hp):
-        self.nimi = nimi        
-        self.hp = hp
-
-    def tulosta_tiedot(self):
-        print(f"Hahmon nimi: {self.nimi}")
-        print(f"Hahmon hp: {self.hp}")
-
-    def taistelu(self, vastustaja):
-        print("Tulee suuri taistelu.")
-        input()
-        if vastustaja.hp > self.hp:
-            print(f"{self.nimi} hävisi taistelun :<")
-            self.hp = 0
-        else:
-            print(f"{self.nimi} voitti taistelun!")
-            self.tulosta_tiedot()
-
-class Hirvio(Hahmo):
-    def __init__(self, nimi, hp, repliikki):
-        self.repliikki = repliikki
-        super().__init__(nimi, hp)
-
-    def tulosta(self):
-        super().tulosta_tiedot()
-        print(f"{self.nimi} sanoo: {self.repliikki}")
-
-class Pelaajahahmo(Hahmo):
-    def __init__(self, nimi, hp, inventaario):
-        self.inventaario = inventaario
-        super().__init__(nimi, hp)
-
-    def tulosta(self):
-        super().tulosta_tiedot()
-        print(f"Sankarimme tavaraluettelo: {self.inventaario}")
+from hahmoluokat import Hirvio, Pelaajahahmo
 
 inventaario = ["Miekka", "Kilpi", "Amuletti"]
 

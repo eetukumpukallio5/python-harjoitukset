@@ -3,6 +3,9 @@
 
 # Muutoslogi
 
+# 30.9.2026
+# Vanhat projektin osat siirretty arkistoon. Vain uusin projektin osio on tässä kansiossa.
+
 # 5.9.2026
 # Hyödyntäen projekti 2:sen runkoa projekti 3 tehty. Päävalikko toimii funktioilla.
 # Projekti 3 kohdan tavoitteet saavutettu.
