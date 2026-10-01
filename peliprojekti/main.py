@@ -3,13 +3,15 @@ from funktiot import juo_vetta, katso_lista, lisaa_listaan, rakenna
 from luokat import Esine, Huone, Pelaaja
 
 #luodaan esineet
+testi_esine = Esine("kissa", "Miau!")
 lompakko = Esine("lompakko", "Otit lompakon pöydältä mukaasi. Lompakossa on 30 euroa, hienoa!")
 ampari = Esine("ämpäri", "Poimit ämpärin. Tällä voisi ehkä kuljettaa vettä joesta...")
 
-#luodaan huoneet
-huone1111 = Huone(1111, "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.")
-huone1112 = Huone(1112, "Olet olohuoneessasi. Pöydällä on lompakkosi. Sinun kannattanee ottaa se mukaan. Idässä on autotallisi ja etelässä makuuhuoneesi.", [lompakko])
-huone1212 = Huone(1212, "Olet autotallissasi. Upea pakettiautosi on täällä. Lattialla on myös ämpäri. Lännessä on olohuoneesi.", [ampari])
+#luodaan huoneet ja lisätään ne listaan
+huone1111 = Huone("1111", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.", [testi_esine])
+huone1112 = Huone("1112", "Olet olohuoneessasi. Pöydällä on lompakkosi. Sinun kannattanee ottaa se mukaan. Idässä on autotallisi ja etelässä makuuhuoneesi.", [lompakko])
+huone1212 = Huone("1212", "Olet autotallissasi. Upea pakettiautosi on täällä. Lattialla on myös ämpäri. Lännessä on olohuoneesi.", [ampari])
+huoneet = [huone1111, huone1112, huone1212]
 
 #otetaan tarvittavat muuttujat käyttäjältä, ja alustetaan komento muuttuja sekä inventaario.
 komento = "n/a"
@@ -36,23 +38,27 @@ else:
 #tilapäisesti staattinen. myöhemmin lisää pelin tallennus
 x, y = 11, 11
 pelaaja = Pelaaja(nimi, inventaario, x, y)
+akt_huone = huone1111
 
-print(pelaaja.sijainti)
-huone = pelaaja.sijainti
-print(huone.intro)
-
-#yksinkertainen silmukka päävalikolle
+#päävalikon silmukka
 while komento != "lopeta":
-    komento = input("Valitse ja syötä komento.\n1) Lisää esine inventaarioon\n2) Katso inventaarion sisältö\n3) Juo vettä (tarvitsee vesipullon)\n4) Rakenna tornia (tarvitsee tiilin)\nlopeta) Sammuta ohjelma\n")
+    print(akt_huone.intro)
+    komento = input("Valitse ja syötä komento.\n1) Poimi esine\n2) Liiku\n3) Katso tavaraluettelon sisältö\nlopeta) Sammuta ohjelma\n")
     if komento == "1":
-        lisaa_listaan(inventaario)
+        nosto = (input("Mitä tahdot poimia? ")).lower()
+        loytyiko = False #tarkistetaan lista yksi esine kerrallaan. jos löytyy, muokkaamme listoja ja tulostaminen vaikuttuu
+        for esine in akt_huone.esineet:
+            if esine.nimi == nosto:
+                print("kyl")
+                loytyiko = True
+                pelaaja.keraa_esine(esine)
+        if loytyiko:
+            pass
+        else:
+            print("Esinettä ei löytynyt yrityksestä huolimatta.")
     elif komento == "2":
-        katso_lista(inventaario)
+        pass
     elif komento == "3":
-        juo_vetta(inventaario)
-    elif komento == "4":
-        if "tiili" in inventaario:
-            kerrokset = kerrokset + 1
-        rakenna(inventaario, kerrokset)
+        pelaaja.tulosta_inventaario()
     elif komento != "lopeta":
         print("Virheellinen komento!")
