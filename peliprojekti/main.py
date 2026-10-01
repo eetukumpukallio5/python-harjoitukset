@@ -1,5 +1,15 @@
 #funktiot on funktiot paketissa. tuodaan ne
 from funktiot import juo_vetta, katso_lista, lisaa_listaan, rakenna
+from luokat import Esine, Huone, Pelaaja
+
+#luodaan esineet
+lompakko = Esine("lompakko", "Otit lompakon pöydältä mukaasi. Lompakossa on 30 euroa, hienoa!")
+ampari = Esine("ämpäri", "Poimit ämpärin. Tällä voisi ehkä kuljettaa vettä joesta...")
+
+#luodaan huoneet
+huone1111 = Huone(1111, "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.")
+huone1112 = Huone(1112, "Olet olohuoneessasi. Pöydällä on lompakkosi. Sinun kannattanee ottaa se mukaan. Idässä on autotallisi ja etelässä makuuhuoneesi.", [lompakko])
+huone1212 = Huone(1212, "Olet autotallissasi. Upea pakettiautosi on täällä. Lattialla on myös ämpäri. Lännessä on olohuoneesi.", [ampari])
 
 #otetaan tarvittavat muuttujat käyttäjältä, ja alustetaan komento muuttuja sekä inventaario.
 komento = "n/a"
@@ -18,14 +28,18 @@ while True:
 #tarkistetaan ikä, ja jos alle 12 while loopin argumentti epäonnistuu ja päättää ohjelman
 if ika >= 12:
     print(f"Tervetuloa, {nimi}!")
-    print(r" ____ _   _ _   _            _ _ _    _         ")
-    print(r"|  _ (_)_(_|_)_(_)_   ____ _| (_) | _| | _____  ")
-    print(r"| |_) / _` |/ _` \ \ / / _` | | | |/ / |/ / _ \ ")
-    print(r"|  __/ (_| | (_| |\ V / (_| | | |   <|   < (_) |")
-    print(r"|_|   \__,_|\__,_| \_/ \__,_|_|_|_|\_\_|\_\___/ ")
 else:
     print("Sinun täytyy olla vähintään 12-vuotias pelataksesi.")
     komento = "lopeta"
+
+#luodaan pelaaja. x y koordinaatit vastaavat ensimmäistä huonetta pelissä, pelaajan makuuhuonetta
+#tilapäisesti staattinen. myöhemmin lisää pelin tallennus
+x, y = 11, 11
+pelaaja = Pelaaja(nimi, inventaario, x, y)
+
+print(pelaaja.sijainti)
+huone = pelaaja.sijainti
+print(huone.intro)
 
 #yksinkertainen silmukka päävalikolle
 while komento != "lopeta":

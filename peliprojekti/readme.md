@@ -1,5 +1,9 @@
 # Peliprojekti
 # Eetu Kumpukallio
+# Veden hankinta (wip nimi)
+
+# Pelin idea
+# Asut kylässä, ja kylän maatilasta on vesi kulumassa loppuun. Sinun tulee keksiä veden lähde maantilalle. Loppuja on kolme, riippuen minkä vedenlähteen pelaaja hankkii. Pelaajalla on ajettava pakettiauto, jolla hän pääsee liikkumaan kylän, metsän, lähikaupan ja kaupungin välillä. Pakettiauto tarvitsee dieseliä, ja jos diesel loppuu peli on ohi. Pelaajalla on tietty määrä rahaa. Rahalla hän voi ostaa asioita, kuten dieseliä pakettiautoon tai ongen. Kestävän kehityksen näkökulmassa peliin liittyy kohdat ei nälkää sekä puhdas vesi ja sanitaatio.
 
 # Muutoslogi
 
