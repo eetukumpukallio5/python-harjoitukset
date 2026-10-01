@@ -14,7 +14,7 @@ class Pelaaja:
         if len(self.inventaario) == 0:
             print(f"Sinulla ei ole yhtään esinettä.\nRahaa sinulla on {self.raha} euroa.")
         else:
-            print("Alla on tavaraluettelosi:")
+            print("Sinulla on:")
             for tavara in self.inventaario:
                 print(tavara.nimi)
             print(f"Rahaa sinulla on {self.raha} euroa.")

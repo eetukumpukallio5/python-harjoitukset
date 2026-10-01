@@ -1,5 +1,4 @@
-#funktiot on funktiot paketissa. tuodaan ne
-from funktiot import juo_vetta, katso_lista, lisaa_listaan, rakenna
+#tuodaan luokat niiden paketista
 from luokat import Esine, Huone, Pelaaja
 
 #luodaan esineet
@@ -52,11 +51,12 @@ while komento != "lopeta":
                 print("kyl")
                 loytyiko = True
                 pelaaja.keraa_esine(esine)
+                akt_huone.esineet.remove(esine)
         if loytyiko:
             pass
         else:
             print("Esinettä ei löytynyt yrityksestä huolimatta.")
-    elif komento == "2":
+    elif komento == "2": #tee vielä liike ennen palauttamista
         pass
     elif komento == "3":
         pelaaja.tulosta_inventaario()

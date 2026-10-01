@@ -7,6 +7,9 @@
 
 # Muutoslogi
 
+# 1.10.2026
+# Ohjelman runkoa uusittu, readme uusittu, vielä hieman kesken ennen projekti 4 tasoa.
+
 # 30.9.2026
 # Vanhat projektin osat siirretty arkistoon. Vain uusin projektin osio on tässä kansiossa.
 
