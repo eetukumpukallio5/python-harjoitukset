@@ -7,6 +7,10 @@
 
 # Muutoslogi
 
+# 2.10.2026
+# Runko toimii. Pystytään liikkumaan, poimimaan esineitä ja katsomaan tavaraluetteloa. Ohjelma jaettu paketteihin myös.
+# Projekti 4 kohdan tavoitteet saavutettu.
+
 # 1.10.2026
 # Ohjelman runkoa uusittu, readme uusittu, vielä hieman kesken ennen projekti 4 tasoa.
 

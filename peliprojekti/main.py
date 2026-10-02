@@ -2,12 +2,11 @@
 from luokat import Esine, Huone, Pelaaja
 
 #luodaan esineet
-testi_esine = Esine("kissa", "Miau!")
 lompakko = Esine("lompakko", "Otit lompakon pöydältä mukaasi. Lompakossa on 30 euroa, hienoa!")
 ampari = Esine("ämpäri", "Poimit ämpärin. Tällä voisi ehkä kuljettaa vettä joesta...")
 
 #luodaan huoneet ja lisätään ne listaan
-huone1111 = Huone("1111", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.", [testi_esine])
+huone1111 = Huone("1111", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.")
 huone1112 = Huone("1112", "Olet olohuoneessasi. Pöydällä on lompakkosi. Sinun kannattanee ottaa se mukaan. Idässä on autotallisi ja etelässä makuuhuoneesi.", [lompakko])
 huone1212 = Huone("1212", "Olet autotallissasi. Upea pakettiautosi on täällä. Lattialla on myös ämpäri. Lännessä on olohuoneesi.", [ampari])
 huoneet = [huone1111, huone1112, huone1212]
@@ -57,7 +56,25 @@ while komento != "lopeta":
         else:
             print("Esinettä ei löytynyt yrityksestä huolimatta.")
     elif komento == "2": #tee vielä liike ennen palauttamista
-        pass
+        suunta = (input("Mihin suuntaan liikutaan? (p, e, l, i) ")).lower()
+        if suunta == "p" or suunta == "e" or suunta == "l" or suunta == "i":
+            alku_x, alku_y = pelaaja.x, pelaaja.y
+            pelaaja.liiku(suunta)
+            print(pelaaja.sijainti)
+            validi_huone = False #tarkistetaan onko uudet koordinaatit luodussa huoneessa vertaamalla koordinaatteja. jos on, vaihdetaan aktiivista huonetta. muutoin palautetaan koordinaatit alkuperäisiin
+            for huone in huoneet:
+                if huone.koordinaatit == pelaaja.sijainti:
+                    validi_huone = True
+                    akt_huone = huone
+            if validi_huone:
+                print("Sirryt uuteen tilaan...")
+            else:
+                print("Virheellinen ilmansuunta.")
+                pelaaja.sijainti = akt_huone.koordinaatit
+                pelaaja.x, pelaaja.y = alku_x, alku_y #palauttaa pelaajan alkuperäiset x y koordinaatit joilla lasketaan sisäisesti koordinaatit
+        else:
+            print("Virheellinen ilmansuunta.")
+        print(pelaaja.sijainti)
     elif komento == "3":
         pelaaja.tulosta_inventaario()
     elif komento != "lopeta":

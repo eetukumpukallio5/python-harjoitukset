@@ -6,7 +6,7 @@ class Pelaaja:
         self.inventaario = inventaario
         self.x = x
         self.y = y
-        self.sijainti = str(x) + str(y)
+        self.sijainti = str(self.x) + str(self.y)
         self.raha = 0
         #pelajaan tiedot. missä pelaaja on, tavaraluettelo, raha ja nimi
 
@@ -20,7 +20,15 @@ class Pelaaja:
             print(f"Rahaa sinulla on {self.raha} euroa.")
 
     def liiku(self, suunta):
-        pass
+        if suunta == "p":
+            self.y += 1
+        elif suunta == "e":
+            self.y -= 1
+        elif suunta == "i":
+            self.x += 1
+        else: #eli kun suunta on l
+            self.x -= 1
+        self.sijainti = str(self.x) + str(self.y) #päivittää uudet koordinaatit
 
     def keraa_esine(self, esine):
         self.inventaario.append(esine)
