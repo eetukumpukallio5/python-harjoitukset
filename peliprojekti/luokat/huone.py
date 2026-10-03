@@ -1,5 +1,12 @@
 class Huone:
-    def __init__(self, koordinaatit, intro, esineet=[]): #normi huoneeseen kolme tarvittua infoa. jos ei esineitä, ottaa tyhjän listan. tällöin tarvitsee huoneesta antaa vain koordinatit ja intro alustaessa
+    def __init__(self, koordinaatit, intro, tyhja_intro, esineet=[]): #normi huoneeseen kolme tarvittua infoa. jos ei esineitä, ottaa tyhjän listan. tällöin tarvitsee huoneesta antaa vain koordinatit ja intro alustaessa. intro eri jos ei esineitä
         self.koordinaatit = koordinaatit
         self.intro = intro
+        self.tyhja_intro = tyhja_intro
         self.esineet = esineet
+
+    def esittely(self):
+        if len(self.esineet) == 0:
+            print(self.tyhja_intro)
+        else:
+            print(self.intro)
