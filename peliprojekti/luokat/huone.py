@@ -10,3 +10,7 @@ class Huone:
             print(self.tyhja_intro)
         else:
             print(self.intro)
+
+    def poista_esine(self, esine):
+        if esine != "onki" and esine != "kala" and esine != "diesel": #esineet jotka ei ole näitä poistetaan listasta
+            self.esineet.remove(esine)

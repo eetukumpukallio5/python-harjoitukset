@@ -1,5 +1,6 @@
 #tuodaan luokat niiden paketista
 from luokat import Esine, Huone, Pelaaja
+import sys
 
 #luodaan esineet
 lompakko = Esine("lompakko", "Otit lompakon pöydältä mukaasi. Lompakossa on 30 euroa, hienoa!")
@@ -7,9 +8,11 @@ ampari = Esine("ämpäri", "Poimit ämpärin. Tällä voisi ehkä kuljettaa vett
 
 #luodaan huoneet ja lisätään ne listaan
 huone1111 = Huone("1111", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.")
-huone1112 = Huone("1112", "Olet olohuoneessasi. Pöydällä on lompakkosi. Sinun kannattanee ottaa se mukaan. Idässä on autotallisi ja etelässä makuuhuoneesi.", "Olet olohuoneessasi. Vielä ei ole aika levätä sohvalla. Idässä on autotallisi ja etelässä makuuhuoneesi.", [lompakko])
+huone1112 = Huone("1112", "Olet olohuoneessasi. Pöydällä on lompakkosi. Sinun kannattanee ottaa se mukaan. Pohjoisessa on autotie, idässä autotallisi ja etelässä makuuhuoneesi.", "Olet olohuoneessasi. Vielä ei ole aika levätä sohvalla. Pohjoisessa on autotie, idässä autotallisi ja etelässä makuuhuoneesi.", [lompakko])
+huone1113 = Huone("1113", "Olet talosi ulkopuolella. Taloja lukuunottamatta täällä ei ole paljon nähtävää. Pohjoisessa on maatila ja etelässä talosi.", "Olet talosi ulkopuolella. Taloja lukuunottamatta täällä ei ole paljon nähtävää. Pohjoisessa on maatila ja etelässä talosi.")
+huone1114 = Huone("1114", "Olet maatilalla. Tehtäväsi on hankkia tänne vettä. Sinulla on vielä töitä tämän suhteen. Etelässä on autotie.", "Olet maatilalla. Tehtäväsi on hankkia tänne vettä. Sinulla on vielä töitä tämän suhteen. Etelässä on autotie.")
 huone1212 = Huone("1212", "Olet autotallissasi. Upea pakettiautosi on täällä. Lattialla on myös ämpäri. Lännessä on olohuoneesi.", "Olet autotallissasi. Upea pakettiautosi on täällä. Lännessä on olohuoneesi.", [ampari])
-huoneet = [huone1111, huone1112, huone1212]
+huoneet = [huone1111, huone1112, huone1113, huone1114, huone1212]
 
 #otetaan tarvittavat muuttujat käyttäjältä, ja alustetaan komento muuttuja sekä inventaario.
 komento = "n/a"
@@ -30,7 +33,12 @@ if ika >= 12:
     print(f"Tervetuloa, {nimi}!")
 else:
     print("Sinun täytyy olla vähintään 12-vuotias pelataksesi.")
-    komento = "lopeta"
+    sys.exit() #lopettaa suoraan ohjelman.
+
+#peliä edeltävä päävalikko. voidaan aloittaa uusi peli, ladata aiempi sessio, tulostaa ohjeet tai esittely ja päättää ohjelma
+while True:
+    komento = print("Valitse ja syötä komento.\n1) Aloita uusi peli\n2) Lataa tallennettu peli\n3) Lue pelin esittely\n4) Lue pelin ohjeet\n5) Sammuta ohjelma")
+    break
 
 #luodaan pelaaja. x y koordinaatit vastaavat ensimmäistä huonetta pelissä, pelaajan makuuhuonetta
 #tilapäisesti staattinen. myöhemmin lisää pelin tallennus
@@ -41,21 +49,20 @@ akt_huone = huone1111
 #päävalikon silmukka
 while komento != "lopeta":
     akt_huone.esittely()
-    komento = input("Valitse ja syötä komento.\n1) Poimi esine\n2) Liiku\n3) Katso tavaraluettelon sisältö\nlopeta) Sammuta ohjelma\n")
+    komento = input("Valitse ja syötä komento.\n1) Poimi\n2) Liiku\n3) Katso tavaraluettelon sisältö\nx) Osta/Myy\nx) Aja\nlopeta) Tallenna ja sammuta ohjelma\n")
     if komento == "1":
         nosto = (input("Mitä tahdot poimia? ")).lower()
         loytyiko = False #tarkistetaan lista yksi esine kerrallaan. jos löytyy, muokkaamme listoja ja tulostaminen vaikuttuu
         for esine in akt_huone.esineet:
             if esine.nimi == nosto:
-                print("kyl")
                 loytyiko = True
                 pelaaja.keraa_esine(esine)
-                akt_huone.esineet.remove(esine)
+                akt_huone.poista_esine(esine)
         if loytyiko:
             pass
         else:
             print("Esinettä ei löytynyt yrityksestä huolimatta.")
-    elif komento == "2": #tee vielä liike ennen palauttamista
+    elif komento == "2":
         suunta = (input("Mihin suuntaan liikutaan? (p, e, l, i) ")).lower()
         if suunta == "p" or suunta == "e" or suunta == "l" or suunta == "i":
             alku_x, alku_y = pelaaja.x, pelaaja.y
