@@ -7,6 +7,10 @@
 
 # Muutoslogi
 
+# 5.10.2026
+# Molemmat päävalikot toimivat, ja pelin tallentaminen toimii.
+# Projekti 5 kohdan tavoitteet saavutettu.
+
 # 2.10.2026
 # Runko toimii. Pystytään liikkumaan, poimimaan esineitä ja katsomaan tavaraluetteloa. Ohjelma jaettu paketteihin myös.
 # Projekti 4 kohdan tavoitteet saavutettu.

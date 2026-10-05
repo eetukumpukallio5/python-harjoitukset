@@ -6,6 +6,7 @@ import json
 #luodaan esineet
 lompakko = Esine("lompakko", "Otit lompakon pöydältä mukaasi. Lompakossa on 30 euroa, hienoa!")
 ampari = Esine("ämpäri", "Poimit ämpärin. Tällä voisi ehkä kuljettaa vettä joesta...")
+esineet = [lompakko, ampari]
 
 #luodaan huoneet ja lisätään ne listaan
 huone1111 = Huone("1111", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.")
@@ -17,7 +18,6 @@ huoneet = [huone1111, huone1112, huone1113, huone1114, huone1212]
 
 #otetaan tarvittavat muuttujat käyttäjältä, ja alustetaan komento muuttuja sekä inventaario.
 komento = "n/a"
-inventaario = []
 nimi = input("Anna nimesi.\n")
 while True:
     ika =  input("Anna ikäsi.\n")
@@ -40,13 +40,41 @@ while True:
     komento = input("Valitse ja syötä komento.\n1) Aloita uusi peli\n2) Lataa tallennettu peli\n3) Lue pelin esittely\n4) Lue pelin ohjeet\n5) Sammuta ohjelma\n")
     if komento == "1":
         print("Uusi peli alkaa. Onnea tehtävääsi.")
-        x, y = 11, 11
-        pelaaja = Pelaaja(nimi, inventaario, x, y) #luodaan pelaaja. x y koordinaatit vastaavat ensimmäistä huonetta pelissä, pelaajan makuuhuonetta
+        pelaaja = Pelaaja(nimi, 0, [], 11, 11) #luodaan pelaaja. x y koordinaatit vastaavat ensimmäistä huonetta pelissä, pelaajan makuuhuonetta
         auto = Auto(70)
         akt_huone = huone1111
         break
     elif komento == "2":
-        print("lataa")
+        try:
+            with open("peliprojekti/tekstitallenteet/tallennus.json", "r") as tiedosto:
+                data = json.load(tiedosto) #ladataan json tiedostosta sanakirja jossa data. täytetään näillä arvoilla oliot ja muuttujat
+        except FileNotFoundError:
+            print("Tallennusta ei löydy. Aloita uusi peli tai yritä uudelleen.")
+            continue
+        except IOError:
+            print("Tallennusten käsittelyssä tapahtui virhe. Aloita uusi peli tai yritä uudelleen.")
+            continue
+        pelaaja = Pelaaja(nimi, data["raha"], [], data["x"], data["y"])
+        for tall_esine in data["inventaario"]: #tallennuksessa on vain esineiden nimet. jos nimi vastaa ohjelman oliota, lisätään se tavaraluetteloon
+            for esine in esineet:
+                if tall_esine == esine.nimi:
+                    pelaaja.inventaario.append(esine)
+        auto = Auto(data["tankki"])
+        for huone in huoneet:
+            if huone.koordinaatit == data["sijainti"]:
+                akt_huone = huone
+        huone1112.esineet = []
+        for tall_esine in data["1112"]:
+            for esine in esineet:
+                if tall_esine == esine.nimi:
+                    huone1112.esineet.append(esine)
+        huone1212.esineet = []
+        for tall_esine in data["1212"]:
+            for esine in esineet:
+                if tall_esine == esine.nimi:
+                    huone1112.esineet.append(esine)
+        print("Lataus onnistui! Peli jatkuu...")
+        break
     elif komento == "3":
         with open("peliprojekti/tekstitallenteet/intro.txt", "r") as tiedosto:
             data = tiedosto.read()
@@ -103,7 +131,7 @@ while komento != "lopeta":
 else: #jos lopetetaan ja tallennetaan, päästään tähän ja tallennetaan tarvitut tiedot tiedostoon
     listapelaaja = [] #ottaa nimet olioiden listojen esineistä, ja tallentaa ne listoihin
     for esine in pelaaja.inventaario:
-        listapelaaja.append(esine.nimi) #virheee??
+        listapelaaja.append(esine.nimi)
     lista1112 = []
     for esine in huone1112.esineet:
         lista1112.append(esine.nimi)
@@ -115,7 +143,7 @@ else: #jos lopetetaan ja tallennetaan, päästään tähän ja tallennetaan tarv
         "y": pelaaja.y,
         "sijainti": pelaaja.sijainti,
         "raha": pelaaja.raha,
-        "inventaario": pelaaja.inventaario,
+        "inventaario": listapelaaja,
         "tankki": auto.tankki,
         "1112": lista1112,
         "1212": lista1212

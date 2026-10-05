@@ -1,13 +1,13 @@
 from .esine import Esine
 
 class Pelaaja:
-    def __init__(self, nimi, inventaario, x, y):
+    def __init__(self, nimi, raha, inventaario, x, y):
         self.nimi = nimi
         self.inventaario = inventaario
         self.x = x
         self.y = y
         self.sijainti = str(self.x) + str(self.y)
-        self.raha = 0
+        self.raha = raha
         #pelajaan tiedot. missä pelaaja on, tavaraluettelo, raha ja nimi
 
     def tulosta_inventaario(self):
