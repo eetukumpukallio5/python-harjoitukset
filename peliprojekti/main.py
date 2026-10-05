@@ -1,6 +1,7 @@
 #tuodaan luokat niiden paketista
-from luokat import Esine, Huone, Pelaaja
+from luokat import Esine, Huone, Pelaaja, Auto
 import sys
+import json
 
 #luodaan esineet
 lompakko = Esine("lompakko", "Otit lompakon pöydältä mukaasi. Lompakossa on 30 euroa, hienoa!")
@@ -17,7 +18,6 @@ huoneet = [huone1111, huone1112, huone1113, huone1114, huone1212]
 #otetaan tarvittavat muuttujat käyttäjältä, ja alustetaan komento muuttuja sekä inventaario.
 komento = "n/a"
 inventaario = []
-kerrokset = 0
 nimi = input("Anna nimesi.\n")
 while True:
     ika =  input("Anna ikäsi.\n")
@@ -37,14 +37,28 @@ else:
 
 #peliä edeltävä päävalikko. voidaan aloittaa uusi peli, ladata aiempi sessio, tulostaa ohjeet tai esittely ja päättää ohjelma
 while True:
-    komento = print("Valitse ja syötä komento.\n1) Aloita uusi peli\n2) Lataa tallennettu peli\n3) Lue pelin esittely\n4) Lue pelin ohjeet\n5) Sammuta ohjelma")
-    break
-
-#luodaan pelaaja. x y koordinaatit vastaavat ensimmäistä huonetta pelissä, pelaajan makuuhuonetta
-#tilapäisesti staattinen. myöhemmin lisää pelin tallennus
-x, y = 11, 11
-pelaaja = Pelaaja(nimi, inventaario, x, y)
-akt_huone = huone1111
+    komento = input("Valitse ja syötä komento.\n1) Aloita uusi peli\n2) Lataa tallennettu peli\n3) Lue pelin esittely\n4) Lue pelin ohjeet\n5) Sammuta ohjelma\n")
+    if komento == "1":
+        print("Uusi peli alkaa. Onnea tehtävääsi.")
+        x, y = 11, 11
+        pelaaja = Pelaaja(nimi, inventaario, x, y) #luodaan pelaaja. x y koordinaatit vastaavat ensimmäistä huonetta pelissä, pelaajan makuuhuonetta
+        auto = Auto(70)
+        akt_huone = huone1111
+        break
+    elif komento == "2":
+        print("lataa")
+    elif komento == "3":
+        with open("peliprojekti/tekstitallenteet/intro.txt", "r") as tiedosto:
+            data = tiedosto.read()
+            print(data)
+    elif komento == "4":
+        with open("peliprojekti/tekstitallenteet/ohjeet.txt", "r") as tiedosto:
+            data = tiedosto.read()
+            print(data)
+    elif komento == "5":
+        sys.exit()
+    else:
+        print("Virheellinen komento!")
 
 #päävalikon silmukka
 while komento != "lopeta":
@@ -86,3 +100,26 @@ while komento != "lopeta":
         pelaaja.tulosta_inventaario()
     elif komento != "lopeta":
         print("Virheellinen komento!")
+else: #jos lopetetaan ja tallennetaan, päästään tähän ja tallennetaan tarvitut tiedot tiedostoon
+    listapelaaja = [] #ottaa nimet olioiden listojen esineistä, ja tallentaa ne listoihin
+    for esine in pelaaja.inventaario:
+        listapelaaja.append(esine.nimi) #virheee??
+    lista1112 = []
+    for esine in huone1112.esineet:
+        lista1112.append(esine.nimi)
+    lista1212 = []
+    for esine in huone1212.esineet:
+        lista1212.append(esine.nimi)
+    tallennus_data = {
+        "x": pelaaja.x,
+        "y": pelaaja.y,
+        "sijainti": pelaaja.sijainti,
+        "raha": pelaaja.raha,
+        "inventaario": pelaaja.inventaario,
+        "tankki": auto.tankki,
+        "1112": lista1112,
+        "1212": lista1212
+    }
+    print(tallennus_data)
+    with open("peliprojekti/tekstitallenteet/tallennus.json", "w") as tiedosto:
+        json.dump(tallennus_data, tiedosto)
