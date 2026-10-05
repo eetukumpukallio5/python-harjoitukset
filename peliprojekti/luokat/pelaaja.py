@@ -33,3 +33,6 @@ class Pelaaja:
     def keraa_esine(self, esine):
         self.inventaario.append(esine)
         print(esine.hanki)
+
+        if esine.nimi == "lompakko":
+            self.raha += 30
