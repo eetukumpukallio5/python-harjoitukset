@@ -6,6 +6,7 @@ import json
 #luodaan esineet
 lompakko = Esine("lompakko", "Otit lompakon pöydältä mukaasi. Lompakossa on 30 euroa, hienoa!")
 ampari = Esine("ämpäri", "Poimit ämpärin. Tällä voisi ehkä kuljettaa vettä joesta...")
+onki = Esine("onki", "")
 esineet = [lompakko, ampari]
 
 #luodaan huoneet ja lisätään ne listaan
@@ -15,9 +16,9 @@ huone1113 = Huone("1113", "Olet talosi ulkopuolella. Taloja lukuunottamatta tä�
 huone1114 = Huone("1114", "Olet maatilalla. Tehtäväsi on hankkia tänne vettä. Sinulla on vielä töitä tämän suhteen. Etelässä on autotie.", "Olet maatilalla. Tehtäväsi on hankkia tänne vettä. Sinulla on vielä töitä tämän suhteen. Etelässä on autotie.")
 huone1212 = Huone("1212", "Olet autotallissasi. Upea pakettiautosi on täällä. Lattialla on myös ämpäri. Lännessä on olohuoneesi.", "Olet autotallissasi. Upea pakettiautosi on täällä. Lännessä on olohuoneesi.", [ampari])
 huone2111 = Huone("2111", "Olet lähikaupan parkkipaikalla. Täällä on jonkin verran ihmisiä ostoksilla ja tankilla. Pohjoisessa on lähikaupan sisäänkäynti.", "Olet lähikaupan parkkipaikalla. Täällä on jonkin verran ihmisiä ostoksilla ja tankilla. Pohjoisessa on lähikaupan sisäänkäynti.")
-huone2112 = Huone("2112", "Olet kaupan sisällä. Onget on asetettu esille tarjoushintaan 25€. Kyltin mukaan tänne voi myös myydä kalaa. Tankin saa täyteen hinnalla 40€. Etelässä on parkkipaikka.", "Olet kaupan sisällä. Onget on asetettu esille tarjoushintaan 25€. Kyltin mukaan tänne voi myös myydä kalaa. Tankin saa täyteen hinnalla 40€. Etelässä on parkkipaikka.", [], [])
+huone2112 = Huone("2112", "Olet kaupan sisällä. Onget on asetettu esille tarjoushintaan 25€. Kyltin mukaan tänne voi myös myydä kalaa. Tankin saa täyteen hinnalla 40€. Etelässä on parkkipaikka.", "Olet kaupan sisällä. Onget on asetettu esille tarjoushintaan 25€. Kyltin mukaan tänne voi myös myydä kalaa. Tankin saa täyteen hinnalla 40€. Etelässä on parkkipaikka.", [], ["onki", "kala", "diesel"])
 
-huoneet = [huone1111, huone1112, huone1113, huone1114, huone1212, huone2111]
+huoneet = [huone1111, huone1112, huone1113, huone1114, huone1212, huone2111, huone2112]
 
 #otetaan tarvittavat muuttujat käyttäjältä, ja alustetaan komento muuttuja sekä inventaario.
 komento = "n/a"
@@ -75,7 +76,7 @@ while True:
         for tall_esine in data["1212"]:
             for esine in esineet:
                 if tall_esine == esine.nimi:
-                    huone1112.esineet.append(esine)
+                    huone1212.esineet.append(esine)
         print("Lataus onnistui! Peli jatkuu...")
         break
     elif komento == "3":
