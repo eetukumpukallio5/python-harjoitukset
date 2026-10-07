@@ -36,3 +36,9 @@ class Pelaaja:
 
         if esine.nimi == "lompakko":
             self.raha += 30
+
+    def poista_esine(self, esine):
+        self.inventaario.remove(esine)
+
+        if esine.nimi == "kala":
+            self.raha += 25
