@@ -21,7 +21,7 @@ huone2111 = Huone("2111", "Olet lähikaupan parkkipaikalla. Täällä on jonkin 
 huone2112 = Huone("2112", "Olet kaupan sisällä. Onget on asetettu esille tarjoushintaan 25€. Kyltin mukaan tänne voi myydä kalaa. Tankin saa täyteen hinnalla 40€. Etelässä on parkkipaikka.", "Olet kaupan sisällä. Onget on asetettu esille tarjoushintaan 25€. Kyltin mukaan tänne voi myydä kalaa. Tankin saa täyteen hinnalla 40€. Etelässä on parkkipaikka.", [], {"onki": {"nimi": "onki", "hinta": 25, "saa_teksti": "Maksoit 25€ ongesta. Aika mennä kalastamaan!", "ei_saa_teksti": "Sinulla ei ole varaa onkeen."}, "kala": {"nimi": "kala", "hinta": 0, "saa_teksti": "Myyt kalan. Saat kalasta 25€!", "ei_saa_teksti": "Sinulla ei ole kalaa jota voisit myydä."}, "diesel": {"nimi": "diesel", "hinta": 40, "saa_teksti": "Täytät tankkisi dieselillä.", "ei_saa_teksti": "Sinulla ei ole tankkaukseen riittävästi rahaa."}})
 
 huoneet = [huone1111, huone1112, huone1113, huone1114, huone1212, huone2111, huone2112]
-paku_huoneet = {huone1212: 0, huone2111: 3} #huoneet joissa paku on. jokaisella huoneella lukuarvo. käytetään laskemaan ajomatkoihin tarvittavat dieselit
+paku_huoneet = {huone1212: {1: 0, 2: 3, 3: 10, 4: 30}, huone2111: {1: 3, 2: 0, 3: 7, 4: 27}} #huoneet joissa paku on. jokaisella huoneella lukuarvo. käytetään laskemaan ajomatkoihin tarvittavat dieselit
 
 #otetaan tarvittavat muuttujat käyttäjältä, ja alustetaan komento muuttuja sekä inventaario.
 komento = "n/a"
@@ -48,7 +48,7 @@ while True:
     if komento == "1":
         print("Uusi peli alkaa. Onnea tehtävääsi.")
         pelaaja = Pelaaja(nimi, 0, [], 11, 11) #luodaan pelaaja. x y koordinaatit vastaavat ensimmäistä huonetta pelissä, pelaajan makuuhuonetta
-        auto = Auto(70)
+        auto = Auto(20)
         akt_huone = huone1111
         break
 
@@ -103,7 +103,7 @@ while True:
 #päävalikon silmukka
 while komento != "lopeta":
     akt_huone.esittely()
-    komento = input("Valitse ja syötä komento.\n1) Poimi\n2) Liiku\n3) Katso tavaraluettelon sisältö\n4) Osta/Myy/Anna\nx) Aja\nlopeta) Tallenna ja sammuta ohjelma\n")
+    komento = input("Valitse ja syötä komento.\n1) Poimi\n2) Liiku\n3) Katso tavaraluettelon sisältö\n4) Osta/Myy/Anna\n5) Aja\nlopeta) Tallenna ja sammuta ohjelma\n")
     if komento == "1":
         nosto = (input("Mitä tahdot poimia? ")).lower()
         loytyiko = False #tarkistetaan lista yksi esine kerrallaan. jos löytyy, muokkaamme listoja ja tulostaminen vaikuttuu
@@ -167,6 +167,19 @@ while komento != "lopeta":
                 print(akt_huone.kauppa[tuote]["ei_saa_teksti"])
         else:
             print("Vikasyöttö.")
+
+    elif komento == "5":
+        if akt_huone in paku_huoneet:
+            maali = input(f"Pakussasi on {auto.tankki} litraa dieseliä jäljellä. Mihin tahdot ajaa?\n1) Koti ja maantila\n2) Lähikauppa\n3) Metsä\n4) Kaupunki\n")
+            try:
+                maali = int(maali)
+            except ValueError:
+                print("Syötteen täytyy olla numero.")
+                continue
+            print(maali)
+        else:
+            print("Pakettiautosi ei ole täällä, täten et voi ajaa mihinkään.")
+    
     elif komento != "lopeta":
         print("Virheellinen komento!")
 
