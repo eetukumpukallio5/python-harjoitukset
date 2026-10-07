@@ -30,12 +30,24 @@ class Pelaaja:
             self.x -= 1
         self.sijainti = str(self.x) + str(self.y) #päivittää uudet koordinaatit
 
+    def saavu(self, x, y):
+        self.x = x
+        self.y = y
+        self.sijainti = str(self.x) + str(self.y)
+
     def keraa_esine(self, esine):
+        if esine.nimi == "vesi" and "ämpäri" not in self.inventaario:
+            print("Tarvitset ämpärin kantaaksesi vettä.")
+            return
+        if esine.nimi == "kala" and "onki" not in self.inventaario:
+            print("Kala ovat liian liukkaita käsillä nappaamiseen.")
+            return
         self.inventaario.append(esine)
         print(esine.hanki)
-
         if esine.nimi == "lompakko":
             self.raha += 30
+
+
 
     def poista_esine(self, esine):
         self.inventaario.remove(esine)

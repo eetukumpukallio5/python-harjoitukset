@@ -3,6 +3,6 @@
 -Poimia. Jos huoneessa on esine, saat sen kirjoittamalla esineen nimen.
 Huomio! Joskus esineen poimiminen saattaa tarvita toisen esineen.
 -Katsoa oman tavaraluettelon sisällön sekä rahasi.
--Ostaa tai myydä esineitä (wip)
--Ajaa (wip)
+-Ostaa, myydä tai antaa esineitä. Poimiminen toimii useimmissa huoneissa esineisiin, muttei kaikissa.
+-Ajaa pakettiautolla, jos se on huoneessa kanssasi. Dieseliä mahtuu maksimissaan 70 litraa tankkiin. Voit tankata tankin ostamalla dieseliä huoltoasemilla.
 -Tallentaa pelin ja sulkea ohjelman. Peliin voit palata pelin avautuessa ensimmäisestä päävalikosta.
