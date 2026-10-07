@@ -12,14 +12,16 @@ mustikka = Esine("mustikka", "Poimit mustikoita. Sait niitä litran!")
 puolukka = Esine("puolukka", "Poimit puolukoita. Sait niitä litran!")
 lakka = Esine("lakka", "Poimit lakkaa. Sait sitä litran!")
 vesi = Esine("vesi", "Poimit ämpäriisi vettä.")
+tynnyri = Esine("tynnyri", "Mies ottaa marjasi. Hän on tyytyväinen niihin! Saat ison tynnyrin vettä vaihdossa.")
+vesipumppu = Esine("vesipumppu", "")
 
-esineet = [lompakko, ampari, onki, kala, mustikka, puolukka, lakka, vesi]
+esineet = [lompakko, ampari, onki, kala, mustikka, puolukka, lakka, vesi, tynnyri, vesipumppu]
 
 #luodaan huoneet ja lisätään ne listaan
 huone1111 = Huone("1111", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.", "Olet makuuhuoneessasi. Huoneen kiinnostavin asia lienee sänky, mutta sinua ei väsytä. Pohjoisessa on olohuoneesi.")
 huone1112 = Huone("1112", "Olet olohuoneessasi. Pöydällä on lompakkosi. Sinun kannattanee ottaa se mukaan. Pohjoisessa on autotie, idässä autotallisi ja etelässä makuuhuoneesi.", "Olet olohuoneessasi. Vielä ei ole aika levätä sohvalla. Pohjoisessa on autotie, idässä autotallisi ja etelässä makuuhuoneesi.", [lompakko])
 huone1113 = Huone("1113", "Olet talosi ulkopuolella. Taloja lukuunottamatta täällä ei ole paljon nähtävää. Pohjoisessa on maatila ja etelässä talosi.", "Olet talosi ulkopuolella. Taloja lukuunottamatta täällä ei ole paljon nähtävää. Pohjoisessa on maatila ja etelässä talosi.")
-huone1114 = Huone("1114", "Olet maatilalla. Tehtäväsi on hankkia tänne vettä. Sinulla on vielä töitä tämän suhteen. Etelässä on autotie.", "Olet maatilalla. Tehtäväsi on hankkia tänne vettä. Sinulla on vielä töitä tämän suhteen. Etelässä on autotie.")
+huone1114 = Huone("1114", "Olet maatilalla. Tehtäväsi on hankkia tänne vettä. Sinulla on vielä töitä tämän suhteen. Etelässä on autotie.", "Olet maatilalla. Tehtäväsi on hankkia tänne vettä. Sinulla on vielä töitä tämän suhteen. Etelässä on autotie.", [], ["vesi", "tynnyri", "vesipumppu"])
 huone1212 = Huone("1212", "Olet autotallissasi. Upea pakettiautosi on täällä. Lattialla on myös ämpäri. Lännessä on olohuoneesi.", "Olet autotallissasi. Upea pakettiautosi on täällä. Lännessä on olohuoneesi.", [ampari])
 
 huone2111 = Huone("2111", "Olet lähikaupan parkkipaikalla. Täällä on jonkin verran ihmisiä ostoksilla ja tankilla. Pakusi on täällä. Pohjoisessa on lähikaupan sisäänkäynti.", "Olet lähikaupan parkkipaikalla. Täällä on jonkin verran ihmisiä ostoksilla ja tankilla. Pakusi on täällä. Pohjoisessa on lähikaupan sisäänkäynti.")
@@ -30,12 +32,18 @@ huone3113 = Huone("3113", "Olet metsässä. Kiviä on täällä paljon. Voit men
 huone3114 = Huone("3114", "Olet metsässä. Tien varrella on puskia mustikoita. Idässä näkyy mökki. Polku vie myös etelään.", "Olet metsässä. Idässä näkyy mökki. Polku vie myös etelään.", [mustikka])
 huone3211 = Huone("3211", "Olet metsän ulkopuolisella kentällä. Kenties täältä löytyy keino hankkia vettä. Pakusi on täällä. Pohjoisessa on metsän sisäänkäynti.", "Olet metsän ulkopuolisella kentällä. Kenties täältä löytyy keino hankkia vettä. Pohjoisessa on metsän sisäänkäynti.")
 huone3212 = Huone("3212", "Olet metsän sisäänkäynnillä. Metsä haarautuu tästä. Läntinen polku vie syvemmälle metsään, idästä kuuluu veden juoksua ja etelässä on parkkipaikka.", "Olet metsän sisäänkäynnillä. Metsä haarautuu tästä. Läntinen polku vie syvemmälle metsään, idästä kuuluu veden juoksua ja etelässä on parkkipaikka.")
-#3214 end room
+huone3214 = Huone("3214", "Olet mökissä. Täällä asustaa mies. Hän tarjoaa sinulle tynnyrillistä vettä, jos tuot hänelle kolme litraa marjoja. Metsä jatkuu länteen ja itään.", "Olet mökissä. Mies on kiitollinen marjoista. Metsä jatkuu länteen ja itään.", ["."], ["marjat"]) #tavaraluettelo sisältää yhden alkion. jos pelaaja saa tynnyrin, lista tyhjenee ja samalla myös huoneen intro.
 huone3312 = Huone("3312", "Olet metsässä. Täällä on joki. Joessa näkyy kaloja. Pohjoisessa on lisää metsää ja lännessä on metsän sisäänkäynti.", "Olet metsässä. Täällä on joki. Joessa näkyy kaloja. Pohjoisessa on lisää metsää ja lännessä on metsän sisäänkäynti.", [kala, vesi])
+huone3313 = Huone("3313", "Olet metsässä. Tien varrella on puskia puolukoita. Voit mennä pohjoiseen tai etelään polkua.", "Olet metsässä. Voit mennä pohjoiseen tai etelään polkua.", [puolukka])
+huone3314 = Huone("3314", "Olet metsässä. Tie haarautuu kaikkiin suuntiin. Voit jatkaa pohjoiseen, länteen, itään tai etelään.", "Olet metsässä. Tie haarautuu kaikkiin suuntiin. Voit jatkaa pohjoiseen, länteen, itään tai etelään.")
+huone3315 = Huone("3315", "Olet metsässä. Tie ei jatku tästä, mutta näköalat täältä ovat upeat. Voit jatkaa polkua etelään.", "Olet metsässä. Tie ei jatku tästä, mutta näköalat täältä ovat upeat. Voit jatkaa polkua etelään.")
+huone3414 = Huone("3414", "Olet metsässä. Tien varrella on puskia lakkaa. Voit mennä länteen polkua.", "Olet metsässä. Voit mennä länteen polkua.", [lakka])
 
+huone4111 = Huone("4111", "Olet huoltoasemalla. Saat tankattua pakusi hintaan 40€. Pohjoisessa on katu.", "Olet huoltoasemalla. Saat tankattua pakusi hintaan 40€. Pohjoisessa on katu.", [], {"diesel": {"nimi": "diesel", "hinta": 40, "saa_teksti": "Täytät tankkisi dieselillä.", "ei_saa_teksti": "Sinulla ei ole tankkaukseen riittävästi rahaa."}})
 huone4112 = Huone("4112", "Olet kaupungissa. Lähelläsi on rautakauppa. Pakusi on täällä. Pohjoisessa on rautakauppa ja etelässä huoltoasema.", "Olet kaupungissa. Lähelläsi on rautakauppa. Pakusi on täällä. Pohjoisessa on rautakauppa ja etelässä huoltoasema.")
+huone4113 = Huone("4113", "Olet rautakaupassa. Vesipumpun saa ostettua hinnalla 100€. Etelessä on katu.", "Olet rautakaupassa. Vesipumpun saa ostettua hinnalla 100€. Etelessä on katu.", [], {"vesipumppu": {"nimi": "vesipumppu", "hinta": 100, "saa_teksti": "Maksoit 100€ vesipumpusta. Tällä riittää vettä erittäin pitkäksi aikaa!", "ei_saa_teksti": "Sinulla ei ole varaa vesipumppuun."}})
 
-huoneet = [huone1111, huone1112, huone1113, huone1114, huone1212, huone2111, huone2112, huone3112, huone3113, huone3114, huone3211, huone3212, huone3312, huone4112]
+huoneet = [huone1111, huone1112, huone1113, huone1114, huone1212, huone2111, huone2112, huone3112, huone3113, huone3114, huone3211, huone3212, huone3214, huone3312, huone3313, huone3314, huone3315, huone3414, huone4111, huone4112, huone4113]
 paku_huoneet = {huone1212: {1: 0, 2: 3, 3: 10, 4: 30}, huone2111: {1: 3, 2: 0, 3: 7, 4: 27}, huone3211: {1: 10, 2: 7, 3: 0, 4: 20}, huone4112: {1: 30, 2: 27, 3: 20, 4: 0}} #huoneet joissa paku on. jokaisella huoneella sanakirjassa etäisyys dieselin kulussa toisiin pakuhuoneisiin
 aja_uusi_huone = {1: {"huone": huone1212, "x": 12, "y": 12}, 2: {"huone": huone2111, "x": 21, "y": 11}, 3: {"huone": huone3211, "x": 32, "y": 11}, 4: {"huone": huone4112, "x": 41, "y": 12}} #pakulla ajaessa syötteen perusteella asetetaan uusi huone pelaajalle
 
@@ -102,6 +110,19 @@ while True:
             for esine in esineet:
                 if tall_esine == esine.nimi:
                     huone3114.esineet.append(esine)
+        huone3313.esineet = []
+        for tall_esine in data["3313"]:
+            for esine in esineet:
+                if tall_esine == esine.nimi:
+                    huone3313.esineet.append(esine)
+        huone3414.esineet = []
+        for tall_esine in data["3414"]:
+            for esine in esineet:
+                if tall_esine == esine.nimi:
+                    huone3414.esineet.append(esine)
+        huone3214.esineet = []
+        for alkio in data["3214"]:
+            huone3214.esineet.append(alkio)
         print("Lataus onnistui! Peli jatkuu...")
         break
 
@@ -143,7 +164,6 @@ while komento != "lopeta":
         if suunta == "p" or suunta == "e" or suunta == "l" or suunta == "i":
             alku_x, alku_y = pelaaja.x, pelaaja.y
             pelaaja.liiku(suunta)
-            print(pelaaja.sijainti)
             validi_huone = False #tarkistetaan onko uudet koordinaatit luodussa huoneessa vertaamalla koordinaatteja. jos on, vaihdetaan aktiivista huonetta. muutoin palautetaan koordinaatit alkuperäisiin
             for huone in huoneet:
                 if huone.koordinaatit == pelaaja.sijainti:
@@ -157,17 +177,52 @@ while komento != "lopeta":
                 pelaaja.x, pelaaja.y = alku_x, alku_y #palauttaa pelaajan alkuperäiset x y koordinaatit joilla lasketaan sisäisesti koordinaatit
         else:
             print("Virheellinen ilmansuunta.")
-        print(pelaaja.sijainti)
 
     elif komento == "3":
         pelaaja.tulosta_inventaario()
 
     elif komento == "4":
         tuote = (input("Mitä haluat ostaa/myydä/antaa? ")).lower()
+        if akt_huone == huone1114: #tulostetaan esineen mukaan lopputekstit
+            if tuote == "vesi":
+                if vesi in pelaaja.inventaario:
+                    with open("peliprojekti/tekstitallenteet/loppu1.txt", "r", encoding="utf-8") as tiedosto:
+                        data = tiedosto.read()
+                        print(data)
+                        sys.exit()
+                continue
+            elif tuote == "tynnyri":
+                if tynnyri in pelaaja.inventaario:
+                    with open("peliprojekti/tekstitallenteet/loppu2.txt", "r", encoding="utf-8") as tiedosto:
+                        data = tiedosto.read()
+                        print(data)
+                        sys.exit()
+                continue
+            elif tuote == "vesipumppu":
+                if vesipumppu in pelaaja.inventaario:
+                    with open("peliprojekti/tekstitallenteet/loppu3.txt", "r", encoding="utf-8") as tiedosto:
+                        data = tiedosto.read()
+                        print(data)
+                        sys.exit()
+                continue
+            else:
+                print("Vikasyöttö.")
+                continue
         for esine in esineet:
             if esine.nimi == tuote:
                 tuote_esine = esine
-        if tuote in akt_huone.kauppa: #kala diesel onki
+        if tuote in akt_huone.kauppa: #alku kaikilla, vähitään tsekataan onko syöte listan sisällä. tästä haarautuu eteenpäin
+            if tuote == "marjat":
+                if mustikka in pelaaja.inventaario and puolukka in pelaaja.inventaario and lakka in pelaaja.inventaario:
+                    pelaaja.keraa_esine(tynnyri)
+                    huone3214.esineet.clear()
+                    pelaaja.poista_esine(mustikka)
+                    pelaaja.poista_esine(puolukka)
+                    pelaaja.poista_esine(lakka)
+                    continue
+                else:
+                    print("Sinulla ei ole tarpeeksi marjoja.")
+                    continue
             if pelaaja.raha >= akt_huone.kauppa[tuote]["hinta"]:
                 if tuote == "kala": #rajatapaukset käsitellään. 
                     if kala in pelaaja.inventaario:
@@ -181,6 +236,7 @@ while komento != "lopeta":
                     pelaaja.raha -= akt_huone.kauppa[tuote]["hinta"]
                     print(akt_huone.kauppa[tuote]["saa_teksti"])
                     auto.tankki = 70
+                    continue
                 pelaaja.raha -= akt_huone.kauppa[tuote]["hinta"]
                 print(akt_huone.kauppa[tuote]["saa_teksti"])
                 pelaaja.inventaario.append(tuote_esine)
@@ -226,6 +282,13 @@ else: #jos lopetetaan ja tallennetaan, päästään tähän ja tallennetaan tarv
     lista3114 = []
     for esine in huone3114.esineet:
         lista3114.append(esine.nimi)
+    lista3313 = []
+    for esine in huone3313.esineet:
+        lista3313.append(esine.nimi)
+    lista3414 = []
+    for esine in huone3414.esineet:
+        lista3414.append(esine.nimi)
+    lista3214 = huone3214.esineet #3214 ainoastaan tallentaa onko tynnyri otettu, ei tarvitse säätöä olioiden kanssa
     tallennus_data = {
         "x": pelaaja.x,
         "y": pelaaja.y,
@@ -235,8 +298,10 @@ else: #jos lopetetaan ja tallennetaan, päästään tähän ja tallennetaan tarv
         "tankki": auto.tankki,
         "1112": lista1112,
         "1212": lista1212,
-        "3114": lista3114
+        "3114": lista3114,
+        "3313": lista3313,
+        "3414": lista3414,
+        "3214": lista3214
     }
-    print(tallennus_data)
     with open("peliprojekti/tekstitallenteet/tallennus.json", "w") as tiedosto:
         json.dump(tallennus_data, tiedosto)

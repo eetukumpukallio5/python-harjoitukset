@@ -36,12 +36,22 @@ class Pelaaja:
         self.sijainti = str(self.x) + str(self.y)
 
     def keraa_esine(self, esine):
-        if esine.nimi == "vesi" and "ämpäri" not in self.inventaario:
-            print("Tarvitset ämpärin kantaaksesi vettä.")
-            return
-        if esine.nimi == "kala" and "onki" not in self.inventaario:
-            print("Kala ovat liian liukkaita käsillä nappaamiseen.")
-            return
+        if esine.nimi == "vesi":
+            ei_listassa = True
+            for tarkasteltava in self.inventaario:
+                if tarkasteltava.nimi == "ämpäri":
+                    ei_listassa = False
+            if ei_listassa:
+                print("Tarvitset jotain kantaaksesi vettä.")
+                return
+        if esine.nimi == "kala":
+            ei_listassa = True
+            for tarkasteltava in self.inventaario:
+                if tarkasteltava.nimi == "onki":
+                    ei_listassa = False
+            if ei_listassa:
+                print("Kalat ovat liian liukkaita käsillä nappaamiseen.")
+                return
         self.inventaario.append(esine)
         print(esine.hanki)
         if esine.nimi == "lompakko":
